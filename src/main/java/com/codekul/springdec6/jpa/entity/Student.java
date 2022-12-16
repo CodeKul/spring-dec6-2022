@@ -1,12 +1,16 @@
 package com.codekul.springdec6.jpa.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import java.io.Serializable;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Student {
 
     @Id
@@ -18,6 +22,14 @@ public class Student {
     private String address;
 
     private String mobileNumber;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

@@ -5,6 +5,8 @@ import com.codekul.springdec6.jpa.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,15 @@ public class StudentController {
 
     @PostMapping("saveStudent")
     public String saveStudent(@RequestBody Student student){
-        studentRepository.save(student);
+        Student student1 = new Student();
+        student1.setMobileNumber(student.getMobileNumber());
+        student1.setDob(student.getDob());
+        student1.setName(student.getName());
+        student1.setAddress(student.getAddress());
+        Period period = Period.between(student.getDob(),LocalDate.now());
+        int age = period.getYears();
+        student1.setAge(age);
+        studentRepository.save(student1);
         return "student saved..";
     }
     @PostMapping("saveStudents")
@@ -93,5 +103,17 @@ public class StudentController {
         return studentRepository.findByNameEquals(name);
     }
 
+    @GetMapping("getStudentByDob/{startDate}/{endDate}")
+    public List<Student> findByName(@PathVariable("startDate") LocalDate startDate, @PathVariable("endDate") LocalDate endDate) {
+        return studentRepository.findByDobBetween(startDate, endDate);
+    }
+
+    @GetMapping("getStudentDobAfter/{startDate}")
+    public List<Student> getStudentDobAfter(@PathVariable("startDate") LocalDate startDate) {
+        return studentRepository.findByDobAfter(startDate);
+    }
 }
+
+
+
 //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/

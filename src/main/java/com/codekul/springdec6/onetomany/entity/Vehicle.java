@@ -1,10 +1,12 @@
-package com.codekul.springdec6.onetoone.entity;
+package com.codekul.springdec6.onetomany.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
-public class Person {
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,21 +14,12 @@ public class Person {
 
     private String name;
 
-    private int age;
+    private String color;
 
-    @OneToOne(mappedBy = "person",cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Aadhar aadhar;
+    private List<Parts> parts;
 
-    public Aadhar getAadhar() {
-        return aadhar;
-    }
-
-    public void setAadhar(Aadhar aadhar) {
-        this.aadhar = aadhar;
-    }
-
-    //     inverse side
     public Integer getId() {
         return id;
     }
@@ -43,11 +36,19 @@ public class Person {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getColor() {
+        return color;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public List<Parts> getParts() {
+        return parts;
+    }
+
+    public void setParts(List<Parts> parts) {
+        this.parts = parts;
     }
 }

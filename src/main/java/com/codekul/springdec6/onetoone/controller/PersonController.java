@@ -20,13 +20,27 @@ public class PersonController {
 
     @PostMapping("savePerson")
     public String savePerson(@RequestBody Person person) {
+//       Person person1 = new Person();
+//       person1.setAge(10);
+//       person1.setName("Prakash");
+//
+//       Aadhar aadhar = new Aadhar();
+//       aadhar.setAadharNumber(242343222L);
+//       aadhar.setNationality("Indian");
+//
+//       person1.setAadhar(aadhar);
+//       aadhar.setPerson(person1);
+//
+//       personRepository.save(person1);
+//       aadharRepository.save(aadhar);
         personRepository.save(person);
-        return "person saved..";
+       return "person and adhar saved";
+
     }
 
-    @PostMapping("saveAadhar")
-    public String saveAadhar(@RequestBody Aadhar aadhar) {
-        aadharRepository.save(aadhar);
-        return "aadhar saved..";
-    }
+//    @PostMapping("saveAadhar")
+//    public String saveAadhar(@RequestBody Aadhar aadhar) {
+//        aadharRepository.save(aadhar);
+//        return "aadhar saved..";
+//    }
 }

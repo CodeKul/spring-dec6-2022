@@ -1,15 +1,12 @@
 package com.codekul.springdec6;
 
+import com.codekul.springdec6.aop.BoyStudent;
+import com.codekul.springdec6.validation.GirlStudent;
 import com.codekul.springdec6.di.Company;
-import com.codekul.springdec6.ioc.Sim;
 import com.codekul.springdec6.ioc.SimConfig;
-import com.codekul.springdec6.ioc.Vodafone;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,6 +27,13 @@ public class Aug25batchApplication {
 		obj.getObj();
 //		Vodafone vodafone = new Vodafone();
 //		vodafone.msg();
+
+		BoyStudent boyStudent = context.getBean(BoyStudent.class);
+		GirlStudent girlStudent = context.getBean(GirlStudent.class);
+//		Human human = context.getBean(Human.class);
+
+		boyStudent.study(1);
+		girlStudent.studied("","");
 	}
 
 	@GetMapping("hii")

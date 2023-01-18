@@ -1,4 +1,4 @@
-package com.codekul.springdec6.validation;
+package com.codekul.springdec6.aop;
 
 import org.springframework.stereotype.Component;
 
